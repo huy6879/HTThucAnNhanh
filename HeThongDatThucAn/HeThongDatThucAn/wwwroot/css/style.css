@@ -158,13 +158,9 @@
     background-size: cover;
 }
 
-.hero-header img {
-    animation: none !important;
-}
-
-.no-animation {
-    animation: none !important; /* Vô hiệu hóa bất kỳ hoạt động nào */
-}
+/*.hero-header img {*/
+/*    animation: imgRotate 50s linear infinite; 
+*/ /*}*/
 
 @keyframes imgRotate { 
     100% { 
@@ -480,4 +476,8 @@
     margin-right: 0;
     padding-right: 0;
     border-right: none;
+}
+
+.btn {
+    width: fit-content; /* Đảm bảo nút có kích thước phù hợp với nội dung */
 }
