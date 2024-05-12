@@ -2,7 +2,7 @@
 
 namespace HeThongDatThucAn20.Controllers
 {
-    public class HangHoaController : Controller
+    public class MenuController : Controller
     {
         public IActionResult Index()
         {
