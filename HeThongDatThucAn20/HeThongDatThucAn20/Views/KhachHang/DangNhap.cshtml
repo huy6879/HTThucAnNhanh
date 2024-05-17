@@ -1,0 +1,43 @@
+﻿@model HeThongDatThucAn20.ViewModels.LoginVM 
+@{
+    ViewData["Title"] = "DangNhap";
+
+}
+
+<div class="container-xxl py-5 bg-dark hero-header mb-5">
+    <div class="row g-0 justify-content-center">
+        <div class="col-md-6 bg-dark d-flex align-items-center" style="margin-top: 100px;">
+            <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
+                <h5 class="section-title ff-secondary text-start text-primary fw-normal">Login</h5>
+                <h1 class="text-white mb-4">Đăng Nhập</h1>
+                <form asp-action="DangNhap" asp-route-returnurl="@ViewBag.ReturnUrl"> 
+                    <div class="row">
+                        <div class="row">
+                            <div class="form-item">
+                                <div class="form-item text-white">
+                                    <label class="form-label my-3" asp-for="@Model.UserName"></label><sup>*</sup>
+                                    <input asp-for="@Model.UserName" class="form-control" />
+                                    <span asp-validation-for="@Model.UserName" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-item">
+                                <div class="form-item text-white">
+
+                                    <label class="form-label my-3" asp-for="@Model.PassWord"></label><sup>*</sup>
+                                    <input asp-for="@Model.PassWord" class="form-control" />
+                                    <span asp-validation-for="@Model.PassWord" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <a href="#" class="italic-link">Bạn chưa có tài khoản?</a>
+                        </div>
+                        <div class="row g-4 text-center align-items-center justify-content-center pt-4" style="margin-top:-20px">
+                            <button type="submit" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">Đăng Nhập</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

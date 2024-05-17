@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8">
+    <title>Restoran - Bootstrap Restaurant Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    @model HeThongDatThucAn20.ViewModels.RegisterVM    
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="~/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="~/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="~/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="~/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    @await Html.PartialAsync("_Header")
+
+
+        <!-- Reservation Start -->
+    <div class="container-xxl py-5 bg-dark hero-header mb-5">
+        <div class="row g-0 justify-content-center">
+            <div class="col-md-6 bg-dark d-flex align-items-center" style="margin-top: 100px;">
+                <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
+                    <h5 class="section-title ff-secondary text-start text-primary fw-normal">Registation</h5>
+                    <h1 class="text-white mb-4">Đăng Ký Tài Khoản</h1>
+                    <form asp-action="DangKy">
+                        <div class="row">
+                            <div class="row">
+                                <div class="form-item">
+                                    <div class="form-item text-white">
+                                        <label class="form-label my-3" asp-for="@Model.Email"></label><sup>*</sup>
+                                        <input asp-for="@Model.Email" class="form-control" />
+                                        <span asp-validation-for="@Model.Email" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-lg-6">
+                                    <div class="form-item text-white">
+                                        <label asp-for="@Model.Password" class="form-label my-3"></label><sup>*</sup>
+                                        <input asp-for="@Model.Password" class="form-control">
+                                        <span asp-validation-for="@Model.Password" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-lg-6">
+                                    <div class="form-item text-white">
+                                        <label asp-for="@Model.Repass" class="form-label my-3"></label><sup>*</sup>
+                                        <input asp-for="@Model.Repass" class="form-control">
+                                        <span asp-validation-for="@Model.Repass" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-lg-6">
+                                    <div class="form-item text-white">
+                                        <label class="form-label my-3" asp-for="@Model.Fullname"></label><sup>*</sup>
+                                        <input asp-for="@Model.Fullname" class="form-control" />
+                                        <span asp-validation-for="@Model.Fullname" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-lg-6">
+                                    <div class="form-item text-white">
+                                        <label class="form-label my-3" asp-for="@Model.Phone"></label><sup>*</sup>
+                                        <input asp-for="@Model.Phone" class="form-control" />
+                                        <span asp-validation-for="@Model.Phone" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-item">
+                                    <div class="form-item text-white">
+
+                                        <label class="form-label my-3" asp-for="@Model.Address"></label><sup>*</sup>
+                                        <input asp-for="@Model.Address" class="form-control" />
+                                        <span asp-validation-for="@Model.Address" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <a href="~/KhachHang/DangNhap" class="italic-link">Bạn đã có tài khoản?</a>
+                            </div>
+                            <div class="row g-4 text-center align-items-center justify-content-center pt-4" style="margin-top:-20px">
+                                <button type="submit" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">Đăng ký</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- Reservation Start -->
+        @await Html.PartialAsync("_Footer")
+    @RenderBody()
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/wow/wow.min.js"></script>
+    <script src="~/lib/easing/easing.min.js"></script>
+    <script src="~/lib/waypoints/waypoints.min.js"></script>
+    <script src="~/lib/counterup/counterup.min.js"></script>
+    <script src="~/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="~/lib/tempusdominus/js/moment.min.js"></script>
+    <script src="~/lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="~/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="~/js/main.js"></script>
+</body>
+
+</html>

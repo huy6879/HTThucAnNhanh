@@ -21,6 +21,9 @@ public partial class Account
 
     public string Password { get; set; } = null!;
 
+    public string? RandomKey { get; set; }
+
+
     public virtual Branch? Branch { get; set; }
 
     public virtual ICollection<Branch> Branches { get; set; } = new List<Branch>();

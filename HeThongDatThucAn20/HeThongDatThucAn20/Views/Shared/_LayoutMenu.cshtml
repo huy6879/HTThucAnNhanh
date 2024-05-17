@@ -78,12 +78,15 @@
                                 {
                                     <div class="col-lg-6">
                                         <div class="d-flex align-items-center">
-                                            <img class="flex-shrink-0 img-fluid rounded" src="~/Hinh/SanPham/@item.Hinh" alt="" style="width: 80px;">
+                                            <img class="flex-shrink-0 img-fluid rounded" src="~/Hinh/SanPham/@item.Hinh" alt="" style="height: 80px; width: 80px;">
                                             <div class="w-100 d-flex flex-column text-start ps-4">
                                                 <h5 class="d-flex justify-content-between border-bottom pb-2">
                                                     <span>@item.TenHH</span>
                                                 </h5>
-                                                <span class="text-danger">Giá: @($"{item.DonGia:0.##}₫")</span>
+                                                <div>
+                                                    <span class="text-dark">Giá:</span>
+                                                    <span class="text-danger">@($"{item.DonGia}₫")</span>
+                                                    </div>
                                                 <small class="fst-italic">@item.MoTa</small>
                                             </div>
                                             <!-- Nút "Thêm vào giỏ hàng" -->
