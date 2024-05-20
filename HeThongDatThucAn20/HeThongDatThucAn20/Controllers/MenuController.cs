@@ -22,7 +22,7 @@ namespace HeThongDatThucAn20.Controllers
 
             var result = sanphams.Select(p => new SanPhamVM
             {
-               MaHH = p.CateId,
+               MaHH = p.ProductId,
                TenHH = p.ProductName,
                DonGia = p.UnitPrice,
                Hinh = p.Picture ??  "",
