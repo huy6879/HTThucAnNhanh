@@ -1,17 +1,14 @@
 ﻿@model IEnumerable<HeThongDatThucAn20.ViewModels.MenuLoaiVM>
 
-
-
-
 <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
     @foreach (var item in Model)
     {
-        <li class="nav-item">
+        <li class="nav-item ml-3">
             <a class="d-flex align-items-center text-start mx-3 me-0 pb-3" data-bs-toggle="pill" href="#tab-3">
                 <a asp-controller="Menu" asp-action="Index" asp-route-loai="@item.MaLoai">
                     <i class="fa fa-utensils fa-2x text-primary"></i>
                     <div class="ps-3">
-                        <h6 class="mt-n1 mb-0">@item.TenLoai <span class="text-primary">(@item.SoLuong)</span></h6>
+                        <h6 class="mt-n1 mb-0 ml-3">@item.TenLoai <span class="text-primary">(@item.SoLuong)</span></h6>
                     </div>
                 </a>
             </a>
