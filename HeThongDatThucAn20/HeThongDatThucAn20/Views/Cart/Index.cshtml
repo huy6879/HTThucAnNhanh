@@ -6,7 +6,6 @@
 }
 <body>
     <div>
-
         <div class="container-xxl py-5 bg-dark hero-header mb-5">
             <div class="container text-center my-5 pt-5 pb-4">
                 <h1 class="display-3 text-white mb-3 animated slideInDown">Giỏ Hàng</h1>
@@ -19,6 +18,7 @@
                 </nav>
             </div>
         </div>
+     </div>
 
 
 <!-- Single Page Header End -->
@@ -113,7 +113,14 @@
                         <h5 class="mb-0 ps-4 me-4">Tổng cộng</h5>
                         <p class="mb-0 pe-4">@($"{Model.Sum(p => p.ThanhTien)}₫")</p>
                     </div>
-                    <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button">Proceed Checkout</button>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" asp-action="Checkout" asp-controller="Cart" asp-route-vid=@TempData["VoucherID"]>Đặt món</a>
+                        }
+                        else
+                        {
+                            <a class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" asp-action="DangNhap" asp-controller="KhachHang">Đặt món</a>
+                        }
                 </div>
             </div>
         </div>
