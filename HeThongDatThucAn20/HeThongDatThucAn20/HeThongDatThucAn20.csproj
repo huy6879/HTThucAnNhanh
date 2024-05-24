@@ -17,6 +17,8 @@
     <Compile Remove="Models\CartModel.cs" />
     <Compile Remove="ViewComponents\CartViewComponent.cs" />
     <Compile Remove="ViewComponents\CartViewComponet.cs" />
+    <Compile Remove="ViewModels\OrderDetails.cs" />
+    <Compile Remove="ViewModels\OrderVM.cs" />
   </ItemGroup>
 
   <ItemGroup>
