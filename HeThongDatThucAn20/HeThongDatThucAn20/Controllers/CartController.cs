@@ -138,11 +138,20 @@ namespace HeThongDatThucAn20.Controllers
         [HttpGet]
         public IActionResult Checkout(int id)
         {
-            if (Carts.Count == 0)
+            try
             {
-                return Redirect("/");
+                if (Carts.Count == 0)
+                {
+                    throw new Exception("Giỏ hàng trống!");
+                }
+
+                return View(Carts);
             }
-            return View(Carts);
+            catch (Exception ex)
+            {
+                ViewData["ErrorMessage"] = ex.Message;
+                return RedirectToAction("Index");
+            }
         }
 
         [Authorize]
@@ -202,7 +211,6 @@ namespace HeThongDatThucAn20.Controllers
                 {
                     {
                         db.Database.RollbackTransaction();
-                        //ModelState.AddModelError("", "An error occurred while processing your order. Please try again.");
                     }
                 }
             }

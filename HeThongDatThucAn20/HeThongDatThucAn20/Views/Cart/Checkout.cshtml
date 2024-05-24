@@ -3,19 +3,28 @@
     ViewData["Title"] = "CheckOut";
 }
 <!-- Single Page Header start -->
-<div class="container-fluid page-header py-5">
-    <h1 class="text-center text-white display-6">Checkout</h1>
-    <ol class="breadcrumb justify-content-center mb-0">
-        <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item"><a href="#">Pages</a></li>
-        <li class="breadcrumb-item active text-white">Checkout</li>
-    </ol>
+<body>
+<div>
+    <div class="container-xxl py-5 bg-dark hero-header mb-5">
+        <div class="container text-center my-5 pt-5 pb-4">
+            <h1 class="display-3 text-white mb-3 animated slideInDown">Đặt Hàng</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center text-uppercase">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                    <li class="breadcrumb-item text-white active" aria-current="page">Check Out</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+
 </div>
 <!-- Single Page Header End -->
 <!-- Checkout Page Start -->
 <div class="container-fluid py-5">
     <div class="container py-5">
-        <h1 class="mb-4">Billing details</h1>
+        <h1 class="mb-4">Thông Tin Đặt Hàng</h1>
         <form asp-action="Checkout">
             <div class="row g-5">
                 <form asp-action="Checkout" asp-controller="Cart">
@@ -83,7 +92,7 @@
                                     <tr>
                                         <th scope="row">
                                             <div class="d-flex align-items-center mt-2">
-                                                <img src="~/Hinh/SanPham/@item.Hinh" class="img-fluid rounded-circle" style="width: 90px; height: 90px;" alt="@item.TenHH">
+                                                <img src="~/Hinh/SanPham/@item.Hinh" class="img-fluid square" style="width: 90px; height: 90px;" alt="@item.TenHH">
                                             </div>
                                         </th>
                                         <td class="py-5">@item.TenHH</td>
@@ -119,7 +128,7 @@
                                         </div>
                                         <div class="form-check text-start">
                                             <input type="checkbox" class="form-check-input bg-primary border-0" id="Shipping-2" name="Shipping-1" value="Shipping">
-                                            <label class="form-check-label" for="Shipping-2">Flat rate: $15.00</label>
+                                                <label class="form-check-label" for="Shipping-2">Local Pickup: $8.00</label>
                                         </div>
                                         <div class="form-check text-start">
                                             <input type="checkbox" class="form-check-input bg-primary border-0" id="Shipping-3" name="Shipping-1" value="Shipping">
@@ -131,13 +140,13 @@
                                     <th scope="row">
                                     </th>
                                     <td class="py-5">
-                                        <p class="mb-0 text-dark text-uppercase py-3">TOTAL</p>
+                                        <p class="mb-0 text-dark text-uppercase py-3">TỔNG ĐƠN HÀNG</p>
                                     </td>
                                     <td class="py-5"></td>
                                     <td class="py-5"></td>
                                     <td class="py-5">
                                         <div class="py-3 border-bottom border-top">
-                                            <p class="mb-0 text-dark">$135.00</p>
+                                                <p class="mb-0 text-dark">@($"{Model.Sum(p => p.ThanhTien).ToString("#,##0")}₫")</p>
                                         </div>
                                     </td>
                                 </tr>
@@ -147,13 +156,13 @@
                     <div class="row g-4 text-center align-items-center justify-content-center border-bottom py-3">
                         <div class="col-12">
                             <div class="form-check text-start my-3">
-                                <input type="checkbox" class="form-check-input bg-primary border-0" id="Transfer-1" name="Transfer" value="Transfer">
-                                <label class="form-check-label" for="Transfer-1">Direct Bank Transfer</label>
+                                    <input type="checkbox" class="form-check-input bg-primary border-0" id="COD" name="COD" value="Payments" checked>
+                                <label class="form-check-label" for="Transfer-1">Thanh Toán Trực Tiếp</label>
                             </div>
-                            <p class="text-start text-dark">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.</p>
-                        </div>
+@*                             <p class="text-start text-dark">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.</p>
+ *@                        </div>
                     </div>
-                    <div class="row g-4 text-center align-items-center justify-content-center border-bottom py-3">
+                    @* <div class="row g-4 text-center align-items-center justify-content-center border-bottom py-3">
                         <div class="col-12">
                             <div class="form-check text-start my-3">
                                 <input type="checkbox" class="form-check-input bg-primary border-0" id="Payments-1" name="Payments" value="Payments">
@@ -176,7 +185,7 @@
                                 <label class="form-check-label" for="Paypal-1">Paypal</label>
                             </div>
                         </div>
-                    </div>
+                    </div> *@
                 </div>
             </div>
         </form>
@@ -273,3 +282,4 @@
         });
     </script>
 }
+</body>
