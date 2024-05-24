@@ -25,15 +25,17 @@ public partial class HeThongDatDoAnContext : DbContext
 
     public virtual DbSet<OrderDetail> OrderDetails { get; set; }
 
+    public virtual DbSet<OrderStatus> OrderStatuses { get; set; }
+
     public virtual DbSet<Payment> Payments { get; set; }
 
     public virtual DbSet<Product> Products { get; set; }
 
     public virtual DbSet<Role> Roles { get; set; }
 
-//    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-//        => optionsBuilder.UseSqlServer("Server=GIAHUY\\SQLEXPRESS; Database=HeThongDatDoAn;Integrated Security=True;Trust Server Certificate=True");
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Server=DESKTOP-5TQDUF4\\SQL2019;Initial Catalog=HeThongDatDoAn;Integrated Security=True;Encrypt=True;Trust Server Certificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -48,6 +50,7 @@ public partial class HeThongDatDoAnContext : DbContext
             entity.Property(e => e.Fullname).HasMaxLength(100);
             entity.Property(e => e.Password).HasMaxLength(50);
             entity.Property(e => e.Phone).HasMaxLength(15);
+            entity.Property(e => e.RandomKey).HasMaxLength(6);
             entity.Property(e => e.RoleId).HasColumnName("RoleID");
 
             entity.HasOne(d => d.Branch).WithMany(p => p.Accounts)
@@ -92,9 +95,13 @@ public partial class HeThongDatDoAnContext : DbContext
             entity.Property(e => e.OrderId).HasColumnName("OrderID");
             entity.Property(e => e.BranchId).HasColumnName("BranchID");
             entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
+            entity.Property(e => e.CustomerName).HasMaxLength(100);
             entity.Property(e => e.Note).HasMaxLength(30);
+            entity.Property(e => e.OrderDate).HasColumnType("datetime");
             entity.Property(e => e.PaymentId).HasColumnName("PaymentID");
+            entity.Property(e => e.PhoneNumber).HasMaxLength(15);
             entity.Property(e => e.ShipDate).HasColumnType("datetime");
+            entity.Property(e => e.StatusId).HasColumnName("StatusID");
 
             entity.HasOne(d => d.Branch).WithMany(p => p.Orders)
                 .HasForeignKey(d => d.BranchId)
@@ -110,19 +117,22 @@ public partial class HeThongDatDoAnContext : DbContext
                 .HasForeignKey(d => d.PaymentId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Orders_Payment");
+
+            entity.HasOne(d => d.Status).WithMany(p => p.Orders)
+                .HasForeignKey(d => d.StatusId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Orders_Order Status");
         });
 
         modelBuilder.Entity<OrderDetail>(entity =>
         {
-            entity.HasKey(e => new { e.ProductId, e.OrderId });
+            entity.HasKey(e => e.OrderDetailId).HasName("PK_Order Details_1");
 
             entity.ToTable("Order Details");
 
+            entity.Property(e => e.OrderDetailId).HasColumnName("OrderDetailID");
+            entity.Property(e => e.OrderId).HasColumnName("OrderID");
             entity.Property(e => e.ProductId).HasColumnName("ProductID");
-            entity.Property(e => e.OrderId)
-                .ValueGeneratedOnAdd()
-                .HasColumnName("OrderID");
-            entity.Property(e => e.UnitPrice).HasColumnType("money");
 
             entity.HasOne(d => d.Order).WithMany(p => p.OrderDetails)
                 .HasForeignKey(d => d.OrderId)
@@ -133,6 +143,18 @@ public partial class HeThongDatDoAnContext : DbContext
                 .HasForeignKey(d => d.ProductId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Order Details_Products");
+        });
+
+        modelBuilder.Entity<OrderStatus>(entity =>
+        {
+            entity.HasKey(e => e.StatusId).HasName("PK_OrderStatus");
+
+            entity.ToTable("Order Status");
+
+            entity.Property(e => e.StatusId)
+                .ValueGeneratedNever()
+                .HasColumnName("StatusID");
+            entity.Property(e => e.StatusName).HasMaxLength(50);
         });
 
         modelBuilder.Entity<Payment>(entity =>
@@ -147,11 +169,10 @@ public partial class HeThongDatDoAnContext : DbContext
         {
             entity.Property(e => e.ProductId).HasColumnName("ProductID");
             entity.Property(e => e.CateId).HasColumnName("CateID");
-            entity.Property(e => e.Description).HasMaxLength(50);
             entity.Property(e => e.Discount).HasColumnType("decimal(5, 2)");
             entity.Property(e => e.Picture).HasMaxLength(255);
             entity.Property(e => e.ProductName).HasMaxLength(50);
-            entity.Property(e => e.UnitPrice).HasColumnType("money");
+            entity.Property(e => e.UnitPrice).HasColumnType("decimal(8, 0)");
 
             entity.HasOne(d => d.Cate).WithMany(p => p.Products)
                 .HasForeignKey(d => d.CateId)
