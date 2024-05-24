@@ -18,7 +18,7 @@
                 </nav>
             </div>
         </div>
-     </div>
+    </div>
 
 
 <!-- Single Page Header End -->
@@ -31,9 +31,9 @@
                     <tr>
                         <th scope="col"></th>
                         <th scope="col">Tên Món</th>
-                        <th scope="col">Thành Tiền</th>
+                        <th scope="col">Đơn Giá</th>
                         <th scope="col">Số lượng</th>
-                        <th scope="col">Tổng</th>
+                        <th scope="col">Thành Tiền</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
@@ -54,27 +54,27 @@
                                 </p>
                             </td>
                             <td>
-                                <p class="mb-0 mt-4">@($"{item.DonGia}₫")</p>
+                                    <p class="mb-0 mt-4">@($"{item.DonGia.ToString("#,##0")}₫")</p>
                             </td>
                             <td>
-                                
-                                <div class="input-group quantity mt-4" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-minus rounded-circle bg-light border" type = "button">
-                                            <i class="fa fa-minus"></i>
-                                        </button>
+                                    <div class="input-group quantity mt-4" style="width: 100px;">
+                                        <form asp-controller="Cart" asp-action="UpdateQuantity" method="post" class="d-flex">
+                                            <div class="input-group-btn">
+                                                <a asp-controller="Cart" asp-action="Decrease" asp-route-id="@item.MaHH" class="btn btn-sm btn-minus rounded-circle bg-light border">
+                                                    <i class="fa fa-minus"></i>
+                                                </a>
+                                            </div>
+                                            <input type="text" class="form-control form-control-sm text-center border-0 quantity-input" value="@item.SoLuong">
+                                            <div class="input-group-btn">
+                                                <a a asp-controller="Cart" asp-action="Increase" asp-route-id="@item.MaHH" class="btn btn-sm btn-plus rounded-circle bg-light border">
+                                                    <i class="fa fa-plus"></i>
+                                                </a>
+                                            </div>
+                                        </form>
                                     </div>
-                                    <input type="text" class="form-control form-control-sm text-center border-0" value="@item.SoLuong">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-plus rounded-circle bg-light border" type="button">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                
                             </td>
                             <td>
-                                <p class="mb-0 mt-4">@($"{item.ThanhTien}₫")</p>
+                                    <p class="mb-0 mt-4">@($"{item.ThanhTien.ToString("#,##0")}₫")</p>
                             </td>
                             <td>
                                 <a asp-action = "RemoveCart" asp-controller="Cart" asp-route-id = "@item.MaHH" class="btn btn-md rounded-circle bg-light border mt-4">
@@ -89,7 +89,7 @@
         </div>
         <div class="mt-5">
             <input type="text" class="border-0 border-bottom rounded me-5 py-3 mb-4" placeholder="Coupon Code">
-            <button class="btn border-secondary rounded-pill px-4 py-3 text-primary" type="button">Apply Coupon</button>
+            <button class="btn border-secondary rounded-pill px-4 py-3 text-primary" type="button">Áp dụng</button>
         </div>
         <div class="row g-4 justify-content-end">
             <div class="col-8"></div>
@@ -98,29 +98,21 @@
                     <div class="p-4">
                         <h1 class="display-6 mb-4">Tổng Đơn Hàng</h1>
                         <div class="d-flex justify-content-between mb-4">
-                            <h5 class="mb-0 me-4">Tổng Tạm Tính:</h5>
-                            <p class="mb-0">@($"{Model.Sum(p => p.ThanhTien)}₫")</p>
+                            <h5 class="mb-0 me-4">Tổng Tạm Tính</h5>
+                                <p class="mb-0">@($"{Model.Sum(p => p.ThanhTien).ToString("#,##0")}₫")</p>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h5 class="mb-0 me-4">Phí Giao Hàng</h5>
                             <div class="">
-                                <p class="mb-0">Flat rate: $3.00</p>
+                                <p class="mb-0">Chưa tính phí giao hàng</p>
                             </div>
                         </div>
-                        <p class="mb-0 text-end">Shipping to Ukraine.</p>
                     </div>
                     <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
                         <h5 class="mb-0 ps-4 me-4">Tổng cộng</h5>
-                        <p class="mb-0 pe-4">@($"{Model.Sum(p => p.ThanhTien)}₫")</p>
+                            <p class="mb-0 pe-4">@($"{Model.Sum(p => p.ThanhTien).ToString("#,##0")}₫")</p>
                     </div>
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <a class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" asp-action="Checkout" asp-controller="Cart" asp-route-vid=@TempData["VoucherID"]>Đặt món</a>
-                        }
-                        else
-                        {
-                            <a class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" asp-action="DangNhap" asp-controller="KhachHang">Đặt món</a>
-                        }
+                    <a asp-action="Checkout" asp-controller="Cart" class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button">Đặt Hàng</a>
                 </div>
             </div>
         </div>
@@ -128,6 +120,7 @@
 </div>
 </body>
 <!-- Cart Page End -->
+
 <h1>Index</h1>
 
 

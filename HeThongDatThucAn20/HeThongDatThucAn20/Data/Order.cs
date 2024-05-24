@@ -9,17 +9,23 @@ public partial class Order
 
     public int CustomerId { get; set; }
 
+    public string? CustomerName { get; set; }
+
+    public string? PhoneNumber { get; set; }
+
     public int PaymentId { get; set; }
 
     public int BranchId { get; set; }
 
     public string ShipAddress { get; set; } = null!;
 
-    public DateOnly OrderDate { get; set; }
+    public DateTime OrderDate { get; set; }
 
-    public DateTime ShipDate { get; set; }
+    public DateTime? ShipDate { get; set; }
 
-    public int Status { get; set; }
+    public double? ShippingFee { get; set; }
+
+    public int StatusId { get; set; }
 
     public string? Note { get; set; }
 
@@ -30,4 +36,6 @@ public partial class Order
     public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
 
     public virtual Payment Payment { get; set; } = null!;
+
+    public virtual OrderStatus Status { get; set; } = null!;
 }

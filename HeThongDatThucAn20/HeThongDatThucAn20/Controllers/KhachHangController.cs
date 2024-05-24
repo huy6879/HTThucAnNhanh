@@ -10,8 +10,6 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 
-
-
 namespace HeThongDatThucAn20.Controllers
 {
     public class KhachHangController : Controller
@@ -72,8 +70,8 @@ namespace HeThongDatThucAn20.Controllers
             ViewBag.ReturnUrl = ReturnUrl;
             if (ModelState.IsValid)
             {
-                var khachhang = db.Accounts.SingleOrDefault(kh => kh.Email == model.UserName);
-                if (khachhang == null)
+                var khachhang = db.Accounts.SingleOrDefault(kh =>kh.Email == model.UserName);
+                if(khachhang == null)
                 {
                     ModelState.AddModelError("Lỗi", "Không có khách hàng này");
                 }
@@ -87,10 +85,12 @@ namespace HeThongDatThucAn20.Controllers
                     {
                         var claims = new List<Claim>
                         {
-                            new Claim(ClaimTypes.Name, khachhang.Fullname),
-                            new Claim(ClaimTypes.StreetAddress, khachhang.Address),
-                            new Claim(ClaimTypes.MobilePhone, khachhang.Phone),
-                            new Claim(ClaimTypes.Email, khachhang.Email),
+                            new Claim(ClaimTypes.Name,khachhang.Fullname),
+                            new Claim(ClaimTypes.StreetAddress,khachhang.Address),
+                            new Claim(ClaimTypes.MobilePhone,khachhang.Phone),
+                            new Claim(ClaimTypes.Email,khachhang.Email),
+                            new Claim(ClaimTypes.Role,"Customer"),
+                            new Claim(ClaimTypes.NameIdentifier, khachhang.AccountId.ToString())
                         };
 
                         if (khachhang.RoleId == 1) // Kiểm tra nếu RoleID là 1
