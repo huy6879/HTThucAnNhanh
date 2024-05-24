@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using HeThongDatThucAn20.Areas.Admin.Models;
 
 namespace HeThongDatThucAn20.Data;
 
@@ -172,4 +173,6 @@ public partial class HeThongDatDoAnContext : DbContext
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+public DbSet<HeThongDatThucAn20.Areas.Admin.Models.ProductModels> ProductModels { get; set; } = default!;
 }

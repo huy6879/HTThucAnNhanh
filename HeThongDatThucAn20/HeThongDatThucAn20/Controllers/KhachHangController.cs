@@ -65,51 +65,67 @@ namespace HeThongDatThucAn20.Controllers
             return View();
         }
 
+
         [HttpPost]
-        public async Task <IActionResult> DangNhap(LoginVM model, string? ReturnUrl)
+        public async Task<IActionResult> DangNhap(LoginVM model, string? ReturnUrl)
         {
             ViewBag.ReturnUrl = ReturnUrl;
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                var khachhang = db.Accounts.SingleOrDefault(kh =>
-                kh.Email == model.UserName);
-                if(khachhang == null)
+                var khachhang = db.Accounts.SingleOrDefault(kh => kh.Email == model.UserName);
+                if (khachhang == null)
                 {
                     ModelState.AddModelError("Lỗi", "Không có khách hàng này");
-                }    
+                }
                 else
-                {  
-                    if(khachhang.Password != model.PassWord.ToMd5Hash(khachhang.RandomKey))
+                {
+                    if (khachhang.Password != model.PassWord.ToMd5Hash(khachhang.RandomKey))
                     {
                         ModelState.AddModelError("Lỗi", "Sai thông tin đăng nhập");
-                    }    
+                    }
                     else
                     {
                         var claims = new List<Claim>
                         {
-                            new Claim(ClaimTypes.Name,khachhang.Fullname),
-                            new Claim(ClaimTypes.StreetAddress,khachhang.Address),
-                            new Claim(ClaimTypes.MobilePhone,khachhang.Phone),
-                            new Claim(ClaimTypes.Email,khachhang.Email),
-                            new Claim(ClaimTypes.Role,"Customer"),
+                            new Claim(ClaimTypes.Name, khachhang.Fullname),
+                            new Claim(ClaimTypes.StreetAddress, khachhang.Address),
+                            new Claim(ClaimTypes.MobilePhone, khachhang.Phone),
+                            new Claim(ClaimTypes.Email, khachhang.Email),
                         };
-                        var claimsIdentity = new ClaimsIdentity(claims,
-                            CookieAuthenticationDefaults.AuthenticationScheme);
-                        var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
 
-                        await HttpContext.SignInAsync(claimsPrincipal);
-
-                        if(Url.IsLocalUrl(ReturnUrl))
+                        if (khachhang.RoleId == 1) // Kiểm tra nếu RoleID là 1
                         {
-                            return Redirect(ReturnUrl);
+                            claims.Add(new Claim(ClaimTypes.Role, "Admin")); // Thêm vai trò Admin
                         }
                         else
                         {
-                            return Redirect("/");
-                        }    
-                    }    
-                }    
-            }    
+                            claims.Add(new Claim(ClaimTypes.Role, "Customer")); // Thêm vai trò Customer
+                        }
+
+                        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                        var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+                        await HttpContext.SignInAsync(claimsPrincipal);
+
+                        if (khachhang.RoleId == 1) // Nếu RoleID là 1
+                        {
+                            // Chuyển đến trang admin
+                            return RedirectToAction("Index", "Home", new { area = "Admin" });
+                        }
+                        else
+                        {
+                            // Nếu không phải RoleID là 1, kiểm tra ReturnUrl và chuyển hướng
+                            if (Url.IsLocalUrl(ReturnUrl))
+                            {
+                                return Redirect(ReturnUrl);
+                            }
+                            else
+                            {
+                                return Redirect("/");
+                            }
+                        }
+                    }
+                }
+            }
             return View();
         }
 
