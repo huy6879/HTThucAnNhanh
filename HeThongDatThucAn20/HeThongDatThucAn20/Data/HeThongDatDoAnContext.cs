@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using HeThongDatThucAn20.Areas.Admin.Models;
+using HeThongDatThucAn20.ViewModels;
 
 namespace HeThongDatThucAn20.Data;
 
@@ -36,7 +37,7 @@ public partial class HeThongDatDoAnContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=DESKTOP-5TQDUF4\\SQL2019;Initial Catalog=HeThongDatDoAn;Integrated Security=True;Encrypt=True;Trust Server Certificate=True");
+        => optionsBuilder.UseSqlServer("Server=GIAHUY\\SQLEXPRESS;Database=HeThongDatDoAn;Integrated Security=True;Trust Server Certificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -73,11 +74,11 @@ public partial class HeThongDatDoAnContext : DbContext
             entity.Property(e => e.BranchCity).HasMaxLength(50);
             entity.Property(e => e.BranchDistrict).HasMaxLength(50);
             entity.Property(e => e.BranchName).HasMaxLength(50);
-            entity.Property(e => e.EmployeeId).HasColumnName("EmployeeID");
+            //entity.Property(e => e.EmployeeId).HasColumnName("EmployeeID");
 
-            entity.HasOne(d => d.Employee).WithMany(p => p.Branches)
-                .HasForeignKey(d => d.EmployeeId)
-                .HasConstraintName("FK_Branches_Account");
+            //entity.HasOne(d => d.Employee).WithMany(p => p.Branches)
+            //    .HasForeignKey(d => d.EmployeeId)
+            //    .HasConstraintName("FK_Branches_Account");
         });
 
         modelBuilder.Entity<Category>(entity =>
@@ -196,4 +197,7 @@ public partial class HeThongDatDoAnContext : DbContext
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 
 public DbSet<HeThongDatThucAn20.Areas.Admin.Models.ProductModels> ProductModels { get; set; } = default!;
+
+public DbSet<HeThongDatThucAn20.Areas.Admin.Models.CategoryModels> CategoryModels { get; set; } = default!;
+
 }
