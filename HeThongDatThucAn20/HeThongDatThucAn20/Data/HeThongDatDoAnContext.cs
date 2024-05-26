@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using HeThongDatThucAn20.Areas.Admin.Models;
 
 namespace HeThongDatThucAn20.Data;
 
@@ -68,16 +67,13 @@ public partial class HeThongDatDoAnContext : DbContext
         {
             entity.HasKey(e => e.BranchId).HasName("PK_Branch");
 
-            entity.Property(e => e.BranchId).HasColumnName("BranchID");
-            entity.Property(e => e.BranchAddress).HasMaxLength(50);
+            entity.Property(e => e.BranchId)
+                .ValueGeneratedNever()
+                .HasColumnName("BranchID");
+            entity.Property(e => e.BranchAddress).HasMaxLength(100);
             entity.Property(e => e.BranchCity).HasMaxLength(50);
-            entity.Property(e => e.BranchDistrict).HasMaxLength(50);
+            entity.Property(e => e.BranchDistrict).HasMaxLength(20);
             entity.Property(e => e.BranchName).HasMaxLength(50);
-            entity.Property(e => e.EmployeeId).HasColumnName("EmployeeID");
-
-            entity.HasOne(d => d.Employee).WithMany(p => p.Branches)
-                .HasForeignKey(d => d.EmployeeId)
-                .HasConstraintName("FK_Branches_Account");
         });
 
         modelBuilder.Entity<Category>(entity =>
@@ -194,6 +190,4 @@ public partial class HeThongDatDoAnContext : DbContext
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-
-public DbSet<HeThongDatThucAn20.Areas.Admin.Models.ProductModels> ProductModels { get; set; } = default!;
 }
