@@ -1,0 +1,41 @@
+﻿@model HeThongDatThucAn20.Areas.Admin.Models.BranchModels
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>BranchModels</h4>
+    <hr />
+    <dl class="col-md-4">
+        <div class="form-group">
+            @Html.DisplayNameFor(model => model.BranchId)
+            @Html.DisplayFor(model => model.BranchId)
+        </div>
+        <div class="form-group">
+            @Html.DisplayNameFor(model => model.BranchName)
+            @Html.DisplayFor(model => model.BranchName)
+        </div>
+        <div class="form-group">
+            @Html.DisplayNameFor(model => model.BranchCity)
+            @Html.DisplayFor(model => model.BranchCity)
+        </div>
+        <div class="form-group">
+            @Html.DisplayNameFor(model => model.BranchDistrict)
+            @Html.DisplayFor(model => model.BranchDistrict)
+        </div>
+        <div class="form-group">
+            @Html.DisplayNameFor(model => model.BranchAddress)
+            @Html.DisplayFor(model => model.BranchAddress)
+        </div>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="BranchId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

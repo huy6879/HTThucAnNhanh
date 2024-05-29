@@ -5,7 +5,6 @@ namespace HeThongDatThucAn20.Areas.Admin.Models
 {
     public class CategoryModels
     {
-        [Key]
         public int CateId { get; set; }
 
         public string CategoryName { get; set; } = null!;
