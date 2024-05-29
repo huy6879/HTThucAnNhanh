@@ -1,0 +1,56 @@
+﻿@model HeThongDatThucAn20.Areas.Admin.Models.ThongKeModels
+@{
+    ViewData["Title"] = "ThongKe";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<body>
+    <form asp-action="DoanhThu" asp-controller="ThongKe" method="post" style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+        <div style="margin: 10px;">
+            <label for="month" style="margin-right: 10px;">Tháng</label>
+            @Html.DropDownList("month", ViewBag.Month as SelectList, "Chọn tháng", new { @style = "padding: 5px; border-radius: 5px; border: 1px solid #ccc;" })
+        </div>
+        <div style="margin: 10px;">
+            <label for="year" style="margin-right: 10px;">Năm</label>
+            @Html.DropDownList("year", ViewBag.Year as SelectList, "Chọn năm", new { @style = "padding: 5px; border-radius: 5px; border: 1px solid #ccc;" })
+        </div>
+        <button type="submit" style="margin: 10px; padding: 10px 20px; border: none; border-radius: 5px; background-color: #007bff; color: white; cursor: pointer;">Xem doanh thu</button>
+    </form>
+</body>
+
+@* <table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BranchId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LoaiSP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoLuong)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DoanhThu)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BranchId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoaiSP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoLuong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoanhThu)
+            </td>
+        </tr>
+}
+    </tbody>
+</table> *@

@@ -15,9 +15,9 @@ public partial class Branch
 
     public string BranchAddress { get; set; } = null!;
 
-    public virtual ICollection<Account> Accounts { get; set; } = new List<Account>();
+    public string? Map { get; set; }
 
-    public virtual Account? Employee { get; set; }
+    public virtual ICollection<Account> Accounts { get; set; } = new List<Account>();
 
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 }

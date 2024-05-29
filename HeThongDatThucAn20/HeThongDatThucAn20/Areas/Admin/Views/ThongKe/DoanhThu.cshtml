@@ -1,0 +1,33 @@
+﻿@model List<HeThongDatThucAn20.Areas.Admin.Models.ThongKeModels>
+
+@{
+    ViewData["Title"] = "DoanhThu";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>DoanhThu Tháng : @ViewBag.m / @ViewBag.y </h1>
+
+<div class="row">
+    <div class="col-md-5 col-sm-12">
+        <table class="table">
+            <tr>
+                <th>Id</th>
+                <th>Chi Nhánh</th>
+                <th>Doanh Thu</th>
+            </tr>
+            <tr>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>@item.BranchId</td>
+                    <td>@item.BranchName</td>
+                    <td>@item.DoanhThu</td>
+                </tr>
+                }
+            </tr>
+        </table>
+    </div>
+    @*     <h1>Tổng Doanh Thu : @ViewBag.Tong</h1> *@
+
+</div>
+

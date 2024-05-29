@@ -149,7 +149,7 @@ namespace HeThongDatThucAn20.Areas.Admin.Controllers
         public async Task<IActionResult> SearchSP(string keyword)
         {
 
-            if (keyword == "")
+            if (keyword == null)
                 return RedirectToAction("ProductList");
             else
             {

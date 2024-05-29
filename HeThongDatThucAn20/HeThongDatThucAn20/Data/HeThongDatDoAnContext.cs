@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using HeThongDatThucAn20.Areas.Admin.Models;
-using HeThongDatThucAn20.ViewModels;
 
 namespace HeThongDatThucAn20.Data;
 
@@ -69,23 +67,22 @@ public partial class HeThongDatDoAnContext : DbContext
         {
             entity.HasKey(e => e.BranchId).HasName("PK_Branch");
 
-            entity.Property(e => e.BranchId).HasColumnName("BranchID");
-            entity.Property(e => e.BranchAddress).HasMaxLength(50);
+            entity.Property(e => e.BranchId)
+                .ValueGeneratedNever()
+                .HasColumnName("BranchID");
+            entity.Property(e => e.BranchAddress).HasMaxLength(100);
             entity.Property(e => e.BranchCity).HasMaxLength(50);
-            entity.Property(e => e.BranchDistrict).HasMaxLength(50);
+            entity.Property(e => e.BranchDistrict).HasMaxLength(20);
             entity.Property(e => e.BranchName).HasMaxLength(50);
-            //entity.Property(e => e.EmployeeId).HasColumnName("EmployeeID");
-
-            //entity.HasOne(d => d.Employee).WithMany(p => p.Branches)
-            //    .HasForeignKey(d => d.EmployeeId)
-            //    .HasConstraintName("FK_Branches_Account");
         });
 
         modelBuilder.Entity<Category>(entity =>
         {
             entity.HasKey(e => e.CateId).HasName("PK_Category");
 
-            entity.Property(e => e.CateId).HasColumnName("CateID");
+            entity.Property(e => e.CateId)
+                .ValueGeneratedNever()
+                .HasColumnName("CateID");
             entity.Property(e => e.CategoryName).HasMaxLength(50);
             entity.Property(e => e.Description).HasMaxLength(30);
         });
@@ -169,7 +166,9 @@ public partial class HeThongDatDoAnContext : DbContext
 
         modelBuilder.Entity<Product>(entity =>
         {
-            entity.Property(e => e.ProductId).HasColumnName("ProductID");
+            entity.Property(e => e.ProductId)
+                .ValueGeneratedNever()
+                .HasColumnName("ProductID");
             entity.Property(e => e.CateId).HasColumnName("CateID");
             entity.Property(e => e.Discount).HasColumnType("decimal(5, 2)");
             entity.Property(e => e.Picture).HasMaxLength(255);
@@ -195,9 +194,4 @@ public partial class HeThongDatDoAnContext : DbContext
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-
-public DbSet<HeThongDatThucAn20.Areas.Admin.Models.ProductModels> ProductModels { get; set; } = default!;
-
-public DbSet<HeThongDatThucAn20.Areas.Admin.Models.CategoryModels> CategoryModels { get; set; } = default!;
-
 }

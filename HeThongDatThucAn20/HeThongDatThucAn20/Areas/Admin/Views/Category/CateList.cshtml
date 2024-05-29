@@ -8,7 +8,7 @@
 <h1>CateList</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" style="display: inline-block; background-color: blue; color: white; padding: 5px; text-decoration: none;">Create New</a>
 </p>
 
 
@@ -46,8 +46,8 @@
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.CateId">Edit</a> |
-                <a asp-action="Delete" asp-route-id="@item.CateId">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.CateId" style="display: inline-block; background-color: green; color: white; padding: 5px; text-decoration: none;">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.CateId" style="display: inline-block; background-color: red; color: white; padding: 5px; text-decoration: none;">Delete</a>
             </td>
         </tr>
 }

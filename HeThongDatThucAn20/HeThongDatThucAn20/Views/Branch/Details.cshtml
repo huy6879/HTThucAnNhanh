@@ -1,0 +1,25 @@
+﻿@model HeThongDatThucAn20.Data.Branch
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_index.cshtml";
+}
+
+<h3 style="text-align: center; font-family: 'Times New Roman', sans-serif;">Vị trí của chi nhánh: @ViewBag.branch.BranchName</h3>
+
+<div class="branch-container">
+    <div class="branch-info" style="display: flex; flex-direction: column; justify-content: center; margin-top: 5px; left: -50px;">
+        <h3>@Html.DisplayFor(model => model.BranchName)</h3>
+        <div>
+            <p><strong>City:</strong> @Html.DisplayFor(model => model.BranchCity)</p>
+            <p><strong>District:</strong> @Html.DisplayFor(model => model.BranchDistrict)</p>
+            <p><strong>Address:</strong> @Html.DisplayFor(model => model.BranchAddress)</p>
+        </div>
+    </div>
+    <div style="display: flex; flex-direction: column; justify-content: center; margin-top: 20px;">
+        <div style="width: 50%; max-width: 100px; margin-left: auto; margin-right: auto;">
+            @Html.Raw(ViewBag.branch.Map)
+        </div>
+    </div>
+</div>
+

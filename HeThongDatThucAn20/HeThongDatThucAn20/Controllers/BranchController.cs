@@ -23,5 +23,11 @@ namespace HeThongDatThucAn20.Controllers
             IEnumerable<Branch> ds = db.Branches.Select(s => s);
             return View(ds);
         }
+        public ActionResult Details(int id)
+        {
+            var details = db.Branches.FirstOrDefault(d => d.BranchId == id);
+            ViewBag.branch = details;
+            return View(details);
+        }
     }
 }

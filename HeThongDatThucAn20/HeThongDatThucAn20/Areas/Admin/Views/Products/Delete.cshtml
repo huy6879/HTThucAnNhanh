@@ -49,7 +49,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="ProductId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <input type="submit" onsubmit="return confirm('Bạn chắc chắn xóa chứ?')" style="background-color: red; color: white; padding: 5px; text-decoration: none;" value="Delete" class="btn btn-danger" /> |
         <a asp-action="ProductList">Back to List</a>
     </form>
 </div>
