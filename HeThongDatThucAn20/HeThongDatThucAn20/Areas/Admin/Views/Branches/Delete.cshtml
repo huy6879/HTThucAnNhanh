@@ -32,10 +32,10 @@
             @Html.DisplayFor(model => model.BranchAddress)
         </div>
     </dl>
-    
+
     <form asp-action="Delete">
         <input type="hidden" asp-for="BranchId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" style="background-color: red; color: white; padding: 5px; text-decoration: none;" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="ListBranch">Back to List</a>
     </form>
 </div>
