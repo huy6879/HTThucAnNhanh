@@ -1,0 +1,59 @@
+﻿@model IEnumerable<HeThongDatThucAn20.Areas.Admin.Models.BranchModels>
+
+@{
+    ViewData["Title"] = "ListBranch";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>ListBranch</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BranchId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BranchName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BranchCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BranchDistrict)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BranchAddress)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <th>
+                    @Html.DisplayFor(modelItem => item.BranchId)
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.BranchName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BranchCity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BranchDistrict)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BranchAddress)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.BranchId">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@item.BranchId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

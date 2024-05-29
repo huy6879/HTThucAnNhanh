@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using HeThongDatThucAn20.Areas.Admin.Models;
 
 namespace HeThongDatThucAn20.Data;
 
@@ -80,7 +81,9 @@ public partial class HeThongDatDoAnContext : DbContext
         {
             entity.HasKey(e => e.CateId).HasName("PK_Category");
 
-            entity.Property(e => e.CateId).HasColumnName("CateID");
+            entity.Property(e => e.CateId)
+                .ValueGeneratedNever()
+                .HasColumnName("CateID");
             entity.Property(e => e.CategoryName).HasMaxLength(50);
             entity.Property(e => e.Description).HasMaxLength(30);
         });
@@ -164,7 +167,9 @@ public partial class HeThongDatDoAnContext : DbContext
 
         modelBuilder.Entity<Product>(entity =>
         {
-            entity.Property(e => e.ProductId).HasColumnName("ProductID");
+            entity.Property(e => e.ProductId)
+                .ValueGeneratedNever()
+                .HasColumnName("ProductID");
             entity.Property(e => e.CateId).HasColumnName("CateID");
             entity.Property(e => e.Discount).HasColumnType("decimal(5, 2)");
             entity.Property(e => e.Picture).HasMaxLength(255);
@@ -190,4 +195,8 @@ public partial class HeThongDatDoAnContext : DbContext
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+public DbSet<HeThongDatThucAn20.Areas.Admin.Models.BranchModels> BranchModels { get; set; } = default!;
+
+public DbSet<HeThongDatThucAn20.Areas.Admin.Models.OrderModels> OrderModels { get; set; } = default!;
 }

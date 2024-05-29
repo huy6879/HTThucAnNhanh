@@ -18,10 +18,11 @@
                     <li><a href="#">Thống kê</a></li>
                     <li><a asp-controller="MAccounts" asp-action="Index">Tài khoản</a></li>
                     <li><a asp-controller="Products" asp-action="ProductList">Sản Phẩm</a></li>
+                    <li><a asp-controller="Category" asp-action="CateList">Loại Sản Phẩm</a></li>
 
-                    <li><a href="#">Đơn hàng</a></li>
+                    <li><a asp-controller="Order" asp-action="ListOrder">Đơn hàng</a></li>
                     <li><a href="#">Khách hàng</a></li>
-                    <li><a href="#">Chi nhánh</a></li>
+                    <li><a asp-controller="Branches" asp-action="ListBranch">Chi nhánh</a></li>
                     <li><a asp-controller="Coupons" asp-action="ListCoupon">Mã giảm giá</a></li>
                     <li><a href="#">Settings</a></li>
                 </ul>

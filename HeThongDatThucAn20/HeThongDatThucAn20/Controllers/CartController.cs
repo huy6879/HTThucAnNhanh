@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using HeThongDatThucAn20.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 
 namespace HeThongDatThucAn20.Controllers
@@ -145,6 +146,8 @@ namespace HeThongDatThucAn20.Controllers
                     throw new Exception("Giỏ hàng trống!");
                 }
 
+                var branches = db.Branches.ToList();
+                ViewBag.Branches = new SelectList(branches, "BranchId", "BranchName");
                 return View(Carts);
             }
             catch (Exception ex)
@@ -156,7 +159,7 @@ namespace HeThongDatThucAn20.Controllers
 
         [Authorize]
         [HttpPost]
-        public IActionResult Checkout(CheckOutVM model)
+        public IActionResult Checkout(CheckOutVM model, int BranchId)
         {
             if (ModelState.IsValid)
             {
@@ -175,7 +178,7 @@ namespace HeThongDatThucAn20.Controllers
                     PhoneNumber = model.DienThoai ?? khachHang.Phone,
                     ShipAddress = model.DiaChi ?? khachHang.Address,
                     OrderDate = DateTime.Now,
-                    BranchId = 1,
+                    BranchId = BranchId,
                     PaymentId = 1,
                     StatusId = 0,
                     Note = model.GhiChu,
