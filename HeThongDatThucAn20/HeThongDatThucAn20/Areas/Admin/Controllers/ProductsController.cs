@@ -13,11 +13,17 @@ namespace HeThongDatThucAn20.Areas.Admin.Controllers
     {
         string domain = "https://localhost:7187/";
         HttpClient client = new HttpClient();
+
+        [HttpGet]
         public async Task <IActionResult> ProductList()
         {
             client.BaseAddress = new Uri(domain);
-            string datajson =  await client.GetStringAsync("/api/Product");
-            List<ProductModels> products = JsonConvert.DeserializeObject<List<ProductModels>>(datajson);
+            string datajson =  await client.GetStringAsync("/api/Product/");
+            ProductModels[] productsArray = JsonConvert.DeserializeObject<ProductModels[]>(datajson);
+
+            // Chuyển đổi mảng thành danh sách để truyền cho view
+            List<ProductModels> products = productsArray.ToList();
+
             return View(products);
         }
         public async Task <IActionResult> Create()
@@ -31,7 +37,7 @@ namespace HeThongDatThucAn20.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]    
-        public IActionResult Create(Product p)
+        public async  Task<IActionResult> Create(Product p)
         {
             client.BaseAddress = new Uri(domain);
             var formdata = new MultipartFormDataContent();

@@ -7,8 +7,9 @@
 
 <h1>SearchSP</h1>
 
+
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" style="display: inline-block; background-color: blue; color: white; padding: 5px; text-decoration: none;">Create New</a>
 </p>
 <form asp-action="SearchSP" method="get" class="search-container" style="width: 300px;">
     <input type="text" id="searchInput" name="keyword" placeholder="Search..." style="width: 150px; padding: 10px;">
@@ -73,8 +74,8 @@
                 @Html.DisplayFor(modelItem => item.UnitInStock)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
-                <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+                 <a asp-action="Edit" asp-route-id="@item.ProductId" style="display: inline-block; background-color: green; color: white; padding: 5px; text-decoration: none;">Edit</a> |
+                 <a asp-action="Delete" asp-route-id="@item.ProductId" style="display: inline-block; background-color: red; color: white; padding: 5px; text-decoration: none;">Delete</a>
             </td>
         </tr>
 }

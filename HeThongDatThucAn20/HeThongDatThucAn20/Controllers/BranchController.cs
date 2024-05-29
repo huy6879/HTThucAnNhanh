@@ -29,5 +29,6 @@ namespace HeThongDatThucAn20.Controllers
             ViewBag.branch = details;
             return View(details);
         }
+
     }
 }
