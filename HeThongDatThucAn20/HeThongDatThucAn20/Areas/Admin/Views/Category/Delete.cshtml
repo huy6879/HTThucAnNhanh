@@ -1,0 +1,38 @@
+﻿@model HeThongDatThucAn20.Areas.Admin.Models.CategoryModels
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>CategoryModels</h4>
+    <hr />
+    <dl class="row">
+        <div class="form-group">
+            @Html.DisplayNameFor(model => model.CateId)
+            @Html.DisplayFor(model => model.CateId)
+        </div>
+        <div class="form-group">
+            @Html.DisplayNameFor(model => model.CategoryName)
+            @Html.DisplayFor(model => model.CategoryName)
+        </div>
+        <div class="form-group">
+            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayFor(model => model.Description)
+        </div>
+        <div class="form-group">
+            @Html.DisplayNameFor(model => model.Status)
+            @Html.DisplayFor(model => model.Status)
+        </div>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="CateId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="CateList">Back to List</a>
+    </form>
+</div>

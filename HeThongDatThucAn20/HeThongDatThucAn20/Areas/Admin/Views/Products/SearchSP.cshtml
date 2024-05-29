@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<HeThongDatThucAn20.Areas.Admin.Models.ProductModels>
 
 @{
-    ViewData["Title"] = "ProductList";
+    ViewData["Title"] = "SearchSP";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>ProductList</h1>
+<h1>SearchSP</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -14,7 +14,6 @@
     <input type="text" id="searchInput" name="keyword" placeholder="Search...">
     <button type="submit">Search</button>
 </form>
-
 <table class="table">
     <thead>
         <tr>
@@ -29,6 +28,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.UnitPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Status)
@@ -46,7 +48,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ProductId)
+                 @Html.DisplayFor(modelItem => item.ProductId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CateId)
@@ -56,6 +58,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.UnitPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Status)

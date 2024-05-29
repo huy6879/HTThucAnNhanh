@@ -13,5 +13,6 @@ namespace HeThongDatThucAn20.Areas.Admin.Models
         public int Status { get; set; }
         public int Quantity { get; set; }
         public int? UnitInStock { get; set; }
+        public string? Description { get; set; }
     }
 }
