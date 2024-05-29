@@ -1,0 +1,48 @@
+﻿@model IEnumerable<HeThongDatThucAn20.Data.Branch>
+
+@{
+    ViewData["Title"] = "Search Branch by District";
+}
+
+<h1>Tìm Kiếm Chi Nhánh</h1>
+
+<form method="post" asp-action="SearchByDistrict">
+    <div class="form-group ">
+        <label for="districtName">Nhập quận:</label>
+        <input type="text" id="districtName" name="districtName" class="form-control" width="150px" padding 10px value="@ViewBag.BranchDistrict" />
+    </div>
+    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+</form>
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.FirstOrDefault().BranchName)</th>
+                <th>@Html.DisplayNameFor(model => model.FirstOrDefault().BranchCity)</th>
+                <th>@Html.DisplayNameFor(model => model.FirstOrDefault().BranchDistrict)</th>
+                <th>@Html.DisplayNameFor(model => model.FirstOrDefault().BranchAddress)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.BranchName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.BranchCity)</td>
+                    <td>@Html.DisplayFor(modelItem => item.BranchDistrict)</td>
+                    <td>@Html.DisplayFor(modelItem => item.BranchAddress)</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.BranchId" style="display: inline-block; background-color: limegreen !important; color: white; padding: 5px; text-decoration: none;">Chi tiết</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No branches found in the specified district.</p>
+}

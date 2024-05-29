@@ -29,7 +29,7 @@
                                     <span asp-validation-for="@Model.PassWord" class="text-danger"></span>
                                 </div>
                             </div>
-                            <a href="DangKy" class="italic-link">Bạn chưa có tài khoản?</a>
+                            <a asp-controller="KhachHang" asp-action="DangKy" class="italic-link">Bạn chưa có tài khoản?</a>
                         </div>
                         <div class="row g-4 text-center align-items-center justify-content-center pt-4" style="margin-top:-20px">
                             <button type="submit" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">Đăng Nhập</button>
