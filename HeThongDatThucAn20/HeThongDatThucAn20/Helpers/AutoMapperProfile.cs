@@ -12,6 +12,20 @@ namespace HeThongDatThucAn20.Helpers
                 ForMember(kh => kh.Fullname, option => option.MapFrom(RegisterVM =>
                 RegisterVM.Fullname))
                 .ReverseMap();
+
+            CreateMap<Account, AccountVM>()
+            .ReverseMap();
+
+            CreateMap<AccountCreateVM, AccountVM>()
+                .ReverseMap();
+
+            CreateMap<AccountCreateVM, Account>()
+                .ForMember(x => x.Password, opt => opt.Ignore())
+                .ForMember(x => x.RandomKey, opt => opt.Ignore())
+               .ReverseMap();
+
+            CreateMap<Role, RoleVM>()
+                .ReverseMap();
         }
     }
 }
