@@ -1,4 +1,4 @@
-using HeThongDatThucAn20.Data;
+﻿using HeThongDatThucAn20.Data;
 using HeThongDatThucAn20.Helpers;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Build.Framework;
@@ -28,8 +28,17 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     .AddCookie(option =>
     {
         option.LoginPath = "/KhachHang/DangNhap";
-        option.AccessDeniedPath = "/AccessDeny";
+        option.AccessDeniedPath = "/KhachHang/AccessDeny";
+        
     });
+builder.Services.AddAuthorization(options =>
+    {
+        options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
+    });
+
+// Add Swagger
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 
 var app = builder.Build();
@@ -50,8 +59,16 @@ app.UseRouting();
 app.UseSession();
 
 app.UseAuthentication();
-
 app.UseAuthorization();
+
+
+// Sử dụng Swagger
+app.UseSwagger();
+
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "He Thong Dat Thuc An API");
+});
 
 app.UseEndpoints(endpoints =>
 {
