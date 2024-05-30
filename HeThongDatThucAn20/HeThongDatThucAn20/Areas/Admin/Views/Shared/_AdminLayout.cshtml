@@ -20,23 +20,14 @@
                     <li><a asp-controller="Products" asp-action="ProductList">Sản Phẩm</a></li>
                     <li><a asp-controller="Category" asp-action="CateList">Loại Sản Phẩm</a></li>
                     <li><a asp-controller="Order" asp-action="ListOrder">Đơn hàng</a></li>
-                    <li><a href="#">Khách hàng</a></li>
                     <li><a asp-controller="Branches" asp-action="ListBranch">Chi nhánh</a></li>
-                    <li><a asp-controller="Coupons" asp-action="ListCoupon">Mã giảm giá</a></li>
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <li><a asp-area="Admin" asp-controller="Home" asp-action="Index">Admin Dashboard</a></li>
-                    }
-                    <li><a href="#">Settings</a></li>
+
                 </ul>
             </nav>
             <div class="user-profile">
                 <span>@Context.User.Identity.Name</span>
-                <ul>
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Logout</a></li>
-                </ul>
-            </div>
+@*                 <a asp-action="DangXuat" asp-controller="KhachHang">Logout</a>
+ *@            </div>
         </header>
     </div>
     <div style="min-height:700px">
