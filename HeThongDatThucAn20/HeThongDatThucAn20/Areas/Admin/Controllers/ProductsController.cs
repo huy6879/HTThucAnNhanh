@@ -1,5 +1,6 @@
 ﻿using HeThongDatThucAn20.Areas.Admin.Models;
 using HeThongDatThucAn20.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.SqlServer.Server;
@@ -8,6 +9,7 @@ using Newtonsoft.Json;
 
 namespace HeThongDatThucAn20.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     public class ProductsController : Controller
     {
