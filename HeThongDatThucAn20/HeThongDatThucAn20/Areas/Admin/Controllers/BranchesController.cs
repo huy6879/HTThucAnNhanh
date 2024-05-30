@@ -1,4 +1,5 @@
 ﻿using HeThongDatThucAn20.Areas.Admin.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -9,6 +10,7 @@ using Newtonsoft.Json;
 
 namespace HeThongDatThucAn20.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     public class BranchesController : Controller
     {

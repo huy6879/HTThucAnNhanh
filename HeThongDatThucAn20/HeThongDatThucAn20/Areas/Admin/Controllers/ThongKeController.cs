@@ -1,5 +1,6 @@
 ﻿using HeThongDatThucAn20.Areas.Admin.Models;
 using HeThongDatThucAn20.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -9,6 +10,7 @@ using System.Net.WebSockets;
 
 namespace HeThongDatThucAn20.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     public class ThongKeController : Controller
     {

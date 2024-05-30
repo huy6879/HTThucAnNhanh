@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HeThongDatThucAn20.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HeThongDatThucAn20.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     public class MProductsController : Controller
     {
