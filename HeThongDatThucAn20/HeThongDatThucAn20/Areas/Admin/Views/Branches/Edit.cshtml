@@ -39,11 +39,11 @@
                 <input asp-for="BranchAddress" class="form-control" />
                 <span asp-validation-for="BranchAddress" class="text-danger"></span>
             </div>
-        </form>
-        <form asp-action="Edit">
-            <input type="hidden" asp-for="BranchId" />
-            <input type="submit" style="background-color: green; color: white; padding: 5px; text-decoration: none;" value="Save" class="btn btn-danger" /> |
-            <a asp-action="ListBranch">Back to List</a>
+            <form asp-action="Edit">
+                <input type="hidden" asp-for="BranchId" />
+                <input type="submit" style="background-color: green; color: white; padding: 5px; text-decoration: none;" value="Save" class="btn btn-danger" /> |
+                <a asp-action="ListBranch">Back to List</a>
+            </form>
         </form>
     </div>
 </div>

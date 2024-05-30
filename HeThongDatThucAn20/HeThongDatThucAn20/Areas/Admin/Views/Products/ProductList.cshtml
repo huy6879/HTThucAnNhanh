@@ -31,13 +31,16 @@
                 @Html.DisplayNameFor(model => model.UnitPrice)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Status)
+                @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Quantity)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.UnitInStock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
             </th>
             <th></th>
         </tr>
@@ -58,13 +61,16 @@
                 @Html.DisplayFor(modelItem => item.UnitPrice)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Status)
+                @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Quantity)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.UnitInStock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
                     <a asp-action="Edit" asp-route-id="@item.ProductId" style="display: inline-block; background-color: green; color: white; padding: 5px; text-decoration: none;">Edit</a> |
